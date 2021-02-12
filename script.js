@@ -41,6 +41,10 @@ function prepareObjects(jsonData) {
     let studentData = jsonObject.fullname.split(" ");
     console.log(studentData);
 
+    //???
+    const firstSpace = fullname.indexOf(" ");
+    const lastSpace = fullname.lastIndexOf(" ");
+
     //Firstname
     let studentFirstName = studentData[0];
     console.log(studentFirstName);
