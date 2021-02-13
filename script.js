@@ -35,38 +35,60 @@ function prepareObjects(jsonData) {
   jsonData.forEach(jsonObject => {
     // TODO: Create new object with cleaned data - and store that in the allAnimals array
 
-    //Creating the object
-    const student = Object.create(Student);
-    //Splitting fullname
-    let studentData = jsonObject.fullname.split(" ");
-    console.log(studentData);
+    //Creating the singleStudent object
+    const singleStudent = Object.create(Student);
 
-    //???
-    const firstSpace = fullname.indexOf(" ");
-    const lastSpace = fullname.lastIndexOf(" ");
+    //Finde navnene ved at definerer mellemrum
+    const firstSpace = jsonObject.fullname.trim().indexOf(" ");
+    const lastSpace = jsonObject.fullname.trim().lastIndexOf(" ");
 
-    //Firstname
-    let studentFirstName = studentData[0];
-    console.log(studentFirstName);
-    student.firstname = studentFirstName;
+    //Define names and seperate them at spaces
+    singleStudent.firstName = jsonObject.fullname
+      .trim()
+      .substring(0, firstSpace);
+    singleStudent.middleName = jsonObject.fullname.substring(
+      firstSpace,
+      lastSpace
+    );
 
-    //Middlename
-    let studentMidddleName = studentData[1];
-    console.log(studentMidddleName);
-    student.middlename = studentMidddleName;
+    if (singleStudent.middleName.includes('"')) {
+      singleStudent.nickName = singleStudent.middleName;
+      singleStudent.middleName = "";
+    }
 
-    //Lastname
-    let studentLastName = studentData[2];
-    console.log(studentLastName);
-    student.lastname = studentLastName;
+    singleStudent.lastName = jsonObject.fullname
+      .trim()
+      .substring(lastSpace)
+      .trim();
+    //Make first letter uppercase - firstname
+    singleStudent.firstNameCaptial =
+      singleStudent.firstName.substring(0, 1).toUpperCase() +
+      singleStudent.firstName.substring(1, firstSpace).toLowerCase();
+    //Make first letter uppercase - middlename
+    singleStudent.middleNameCaptial =
+      singleStudent.middleName.substring(0, 1).toUpperCase() +
+      singleStudent.middleName
+        .substring(1, singleStudent.middleName.length)
+        .toLowerCase(singleStudent.middleName.length);
+    //Make first letter uppercase - lastname
+    singleStudent.lastNameCaptial =
+      singleStudent.lastName.substring(0, 1).toUpperCase() +
+      singleStudent.lastName
+        .substring(1)
+        .toLowerCase(singleStudent.middleName.length);
+    //Make first letter uppercase - nickname
+    singleStudent.middleNameCapital =
+      singleStudent.middleName.substring(0, 1).toUpperCase() +
+      singleStudent.middleName
+        .substring(1)
+        .toLowerCase(singleStudent.middleName.length);
 
-    //Gør første bogstav stort og resten småt: firstname
-    student.firstNameCapitalized =
-      student.firstName.substring(0, 1).toUpperCase() +
-      student.firstName.substring(1, firstSpace).toLowerCase();
+    //Gender
+
+    //House
 
     //Adding all the objects into the array
-    allStudents.push(student);
+    allStudents.push(singleStudent);
   });
 
   displayList();
