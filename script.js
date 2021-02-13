@@ -3,7 +3,7 @@
 window.addEventListener("DOMContentLoaded", start);
 
 //Creating empty array
-let allStudents = [];
+const allStudents = [];
 
 //Creating the prototype (template)
 const Student = {
@@ -42,7 +42,8 @@ function prepareObjects(jsonData) {
     const firstSpace = jsonObject.fullname.trim().indexOf(" ");
     const lastSpace = jsonObject.fullname.trim().lastIndexOf(" ");
 
-    //Define names and seperate them at spaces
+    //Del string over ved mellemrummen
+    // adskil det fulde navn til for, mellem, efternavn
     singleStudent.firstName = jsonObject.fullname
       .trim()
       .substring(0, firstSpace);
@@ -55,40 +56,58 @@ function prepareObjects(jsonData) {
       singleStudent.nickName = singleStudent.middleName;
       singleStudent.middleName = "";
     }
-
     singleStudent.lastName = jsonObject.fullname
       .trim()
       .substring(lastSpace)
       .trim();
-    //Make first letter uppercase - firstname
-    singleStudent.firstNameCaptial =
+
+    //Gør første stort og resten småt
+    //firstname
+    singleStudent.firstNameCapitalized =
       singleStudent.firstName.substring(0, 1).toUpperCase() +
       singleStudent.firstName.substring(1, firstSpace).toLowerCase();
-    //Make first letter uppercase - middlename
-    singleStudent.middleNameCaptial =
+
+    //middlename
+    singleStudent.middleNameCapitalized =
       singleStudent.middleName.substring(0, 1).toUpperCase() +
       singleStudent.middleName
         .substring(1, singleStudent.middleName.length)
-        .toLowerCase(singleStudent.middleName.length);
-    //Make first letter uppercase - lastname
-    singleStudent.lastNameCaptial =
-      singleStudent.lastName.substring(0, 1).toUpperCase() +
-      singleStudent.lastName
-        .substring(1)
-        .toLowerCase(singleStudent.middleName.length);
-    //Make first letter uppercase - nickname
-    singleStudent.middleNameCapital =
-      singleStudent.middleName.substring(0, 1).toUpperCase() +
+        .toLowerCase();
+    singleStudent.middleName.substring(0, 1).toUpperCase() +
       singleStudent.middleName
         .substring(1)
         .toLowerCase(singleStudent.middleName.length);
 
-    //Gender
+    //lastname
+    singleStudent.lastNameCapitalized =
+      singleStudent.lastName.substring(0, 1).toUpperCase() +
+      singleStudent.lastName
+        .substring(1)
+        .toLowerCase(singleStudent.lastName.length);
+    singleStudent.nickNameCapitalized =
+      //GENDER
+      singleStudent.gender = jsonObject.gender.substring(0).trim();
+    singleStudent.genderCapitalized =
+      singleStudent.gender.substring(0, 1).toUpperCase() +
+      singleStudent.gender.substring(1).toLowerCase();
 
-    //House
+    //HOUSE
+    singleStudent.house = jsonObject.house.substring(0).trim();
+    singleStudent.houseCapitalized =
+      singleStudent.house.substring(0, 1).toUpperCase() +
+      singleStudent.house.substring(1).toLowerCase();
+
+    //INDSÆT I PROTOTYPE -> ARRAYET
+    singleStudent.firstName = singleStudent.firstNameCapitalized;
+    singleStudent.middleName = singleStudent.middleNameCapitalized;
+    singleStudent.lastName = singleStudent.lastNameCapitalized;
+    singleStudent.nickName = singleStudent.nickNameCapitalized;
+    singleStudent.gender = singleStudent.genderCapitalized;
+    singleStudent.house = singleStudent.houseCapitalized;
 
     //Adding all the objects into the array
     allStudents.push(singleStudent);
+    console.log(singleStudent);
   });
 
   displayList();
