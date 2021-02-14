@@ -124,11 +124,10 @@ function displayList() {
 function displayStudent(student) {
   // create clone
   const clone = document
-    .querySelector("template#student")
+    .querySelector("template#studenttemplate")
     .content.cloneNode(true);
 
   // set clone data
-
   clone.querySelector("[data-field=firstname]").textContent = student.firstName;
   clone.querySelector("[data-field=middlename]").textContent =
     student.middleName;
@@ -136,9 +135,9 @@ function displayStudent(student) {
   clone.querySelector("[data-field=nickname]").textContent = student.nickName;
   clone.querySelector("[data-field=gender]").textContent = student.gender;
   clone.querySelector("[data-field=house]").textContent = student.house;
-  clone.querySelector("img").src = `/images/${
-    student.lastName
-  }_${student.firstName.charAt(0)}.png`;
+  // clone.querySelector("img").src = `/images/${
+  //   student.lastName
+  // }_${student.firstName.charAt(0)}.png`;
 
   //append clone to list
   document.querySelector("#list tbody").appendChild(clone);
