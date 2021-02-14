@@ -123,23 +123,23 @@ function displayList() {
 
 function displayStudent(student) {
   // create clone
-  const klon = document
+  const clone = document
     .querySelector("template#student")
     .content.cloneNode(true);
 
   // set clone data
 
-  klon.querySelector("[data-field=firstname]").textContent = student.firstName;
-  klon.querySelector("[data-field=middlename]").textContent =
+  clone.querySelector("[data-field=firstname]").textContent = student.firstName;
+  clone.querySelector("[data-field=middlename]").textContent =
     student.middleName;
-  klon.querySelector("[data-field=lastname]").textContent = student.lastName;
-  klon.querySelector("[data-field=nickname]").textContent = student.nickName;
-  klon.querySelector("[data-field=gender]").textContent = student.gender;
-  klon.querySelector("[data-field=house]").textContent = student.house;
-  klon.querySelector("img").src = `/images/${
+  clone.querySelector("[data-field=lastname]").textContent = student.lastName;
+  clone.querySelector("[data-field=nickname]").textContent = student.nickName;
+  clone.querySelector("[data-field=gender]").textContent = student.gender;
+  clone.querySelector("[data-field=house]").textContent = student.house;
+  clone.querySelector("img").src = `/images/${
     student.lastName
   }_${student.firstName.charAt(0)}.png`;
 
   //append clone to list
-  document.querySelector("#list tbody").appendChild(klon);
+  document.querySelector("#list tbody").appendChild(clone);
 }
