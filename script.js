@@ -84,9 +84,9 @@ function prepareObjects(jsonData) {
       singleStudent.lastName
         .substring(1)
         .toLowerCase(singleStudent.lastName.length);
-    singleStudent.nickNameCapitalized =
-      //GENDER
-      singleStudent.gender = jsonObject.gender.substring(0).trim();
+
+    //GENDER
+    singleStudent.gender = jsonObject.gender.substring(0).trim();
     singleStudent.genderCapitalized =
       singleStudent.gender.substring(0, 1).toUpperCase() +
       singleStudent.gender.substring(1).toLowerCase();
