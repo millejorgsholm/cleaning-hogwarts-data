@@ -54,12 +54,27 @@ function prepareObjects(jsonData) {
 
     if (singleStudent.middleName.includes('"')) {
       singleStudent.nickName = singleStudent.middleName;
-      singleStudent.middleName = "";
     }
+
     singleStudent.lastName = jsonObject.fullname
       .trim()
       .substring(lastSpace)
       .trim();
+
+    if (singleStudent.lastName.includes("-")) {
+      const iOfHyph = singleStudent.lastName.indexOf("-");
+      singleStudent.lastName =
+        singleStudent.lastName.substring(1, 2).toUpperCase() +
+        singleStudent.lastName.substring(2, iOfHyph + 2).toLowerCase() +
+        singleStudent.lastName
+          .substring(iOfHyph + 2, iOfHyph + 3)
+          .toUpperCase() +
+        singleStudent.lastName.substring(iOfHyph + 3).toLowerCase();
+    } else {
+      singleStudent.lastName =
+        singleStudent.lastName.substring(0, 1).toUpperCase() +
+        singleStudent.lastName.substring(1).toLowerCase();
+    }
 
     //Gør første stort og resten småt
     //firstname
@@ -69,14 +84,8 @@ function prepareObjects(jsonData) {
 
     //middlename
     singleStudent.middleNameCapitalized =
-      singleStudent.middleName.substring(0, 1).toUpperCase() +
-      singleStudent.middleName
-        .substring(1, singleStudent.middleName.length)
-        .toLowerCase();
-    singleStudent.middleName.substring(0, 1).toUpperCase() +
-      singleStudent.middleName
-        .substring(1)
-        .toLowerCase(singleStudent.middleName.length);
+      singleStudent.middleName.substring(1, 2).toUpperCase() +
+      singleStudent.middleName.substring(2, lastSpace).toLowerCase();
 
     //lastname
     singleStudent.lastNameCapitalized =
