@@ -79,6 +79,23 @@ function prepareObjects(jsonData) {
         .substring(1)
         .toLowerCase(singleStudent.lastName.length);
 
+    //Names with a hyphen, must have the first letter after the hyphen capitalized as well -> a student's lastname includes a hyphen
+    const ifHyphens = singleStudent.lastName.indexOf("-");
+
+    if (ifHyphens == -1) {
+      singleStudent.lastNameCapitalized =
+        singleStudent.lastNameCapitalized.substring(0, 1).toUpperCase() +
+        singleStudent.lastNameCapitalized.substring(1).toLowerCase();
+    } else {
+      singleStudent.lastNameCapitalized =
+        singleStudent.lastName.substring(0, 1).toUpperCase() +
+        singleStudent.lastName.substring(1, ifHyphens + 1).toLowerCase() +
+        singleStudent.lastName
+          .substring(ifHyphens + 1, ifHyphens + 2)
+          .toUpperCase() +
+        singleStudent.lastName.substring(ifHyphens + 2).toLowerCase();
+    }
+
     //GENDER
     singleStudent.gender = jsonObject.gender.substring(0).trim();
     singleStudent.genderCapitalized =
