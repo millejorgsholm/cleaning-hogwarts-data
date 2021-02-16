@@ -54,6 +54,7 @@ function prepareObjects(jsonData) {
 
     if (singleStudent.middleName.includes('"')) {
       singleStudent.nickName = singleStudent.middleName;
+      singleStudent.middleName = "";
     }
 
     singleStudent.lastName = jsonObject.fullname
@@ -96,13 +97,13 @@ function prepareObjects(jsonData) {
         singleStudent.lastName.substring(ifHyphens + 2).toLowerCase();
     }
 
-    //GENDER
+    //Gender
     singleStudent.gender = jsonObject.gender.substring(0).trim();
     singleStudent.genderCapitalized =
       singleStudent.gender.substring(0, 1).toUpperCase() +
       singleStudent.gender.substring(1).toLowerCase();
 
-    //HOUSE
+    //House
     singleStudent.house = jsonObject.house.substring(0).trim();
     singleStudent.houseCapitalized =
       singleStudent.house.substring(0, 1).toUpperCase() +
@@ -112,7 +113,7 @@ function prepareObjects(jsonData) {
     singleStudent.firstName = singleStudent.firstNameCapitalized;
     singleStudent.middleName = singleStudent.middleNameCapitalized;
     singleStudent.lastName = singleStudent.lastNameCapitalized;
-    singleStudent.nickName = singleStudent.nickNameCapitalized;
+    // singleStudent.nickName = singleStudent.nickNameCapitalized;
     singleStudent.gender = singleStudent.genderCapitalized;
     singleStudent.house = singleStudent.houseCapitalized;
 
@@ -130,6 +131,7 @@ function displayList() {
 
   // build a new list
   allStudents.forEach(displayStudent);
+  console.table(allStudents);
 }
 
 function displayStudent(student) {
@@ -146,7 +148,9 @@ function displayStudent(student) {
   clone.querySelector("[data-field=nickname]").textContent = student.nickName;
   clone.querySelector("[data-field=gender]").textContent = student.gender;
   clone.querySelector("[data-field=house]").textContent = student.house;
-  // clone.querySelector("img").src = `imgs/${student.image}`;
+  clone.querySelector("[data-field=image] img").src = `/images/${
+    student.lastName
+  }_${student.firstName.charAt(0)}.png`;
 
   //append clone to list
   document.querySelector("#list tbody").appendChild(clone);
