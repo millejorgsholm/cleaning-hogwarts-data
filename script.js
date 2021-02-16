@@ -119,7 +119,6 @@ function prepareObjects(jsonData) {
 
     //Adding all the objects into the array
     allStudents.push(singleStudent);
-    console.log(singleStudent);
   });
 
   displayList();
