@@ -131,7 +131,6 @@ function displayList() {
 
   // build a new list
   allStudents.forEach(displayStudent);
-  console.table(allStudents);
 }
 
 function displayStudent(student) {
