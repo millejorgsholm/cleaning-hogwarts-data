@@ -61,7 +61,7 @@ function prepareObjects(jsonData) {
       .substring(lastSpace)
       .trim();
 
-    //Gør første stort og resten småt
+    //Make first letter upperCase and the rest of them lowerCase
     //firstname
     singleStudent.firstNameCapitalized =
       singleStudent.firstName.substring(0, 1).toUpperCase() +
@@ -79,7 +79,7 @@ function prepareObjects(jsonData) {
         .substring(1)
         .toLowerCase(singleStudent.lastName.length);
 
-    //Names with a hyphen, must have the first letter after the hyphen capitalized as well -> a student's lastname includes a hyphen
+    //Names with a hyphen, must have the first letter after the hyphen capitalized as well -> one of the student's lastname includes a hyphen
     const ifHyphens = singleStudent.lastName.indexOf("-");
 
     if (ifHyphens == -1) {
