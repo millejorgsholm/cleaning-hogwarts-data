@@ -53,6 +53,7 @@ function prepareObjects(jsonData) {
       lastSpace
     );
 
+    //If middleName includes "", it becomes a nickName
     if (singleStudent.middleName.includes('"')) {
       singleStudent.nickName = singleStudent.middleName;
       singleStudent.middleName = "";
